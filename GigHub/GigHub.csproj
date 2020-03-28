@@ -173,6 +173,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
@@ -192,6 +193,10 @@
     <Compile Include="Migrations\202003281858004_PopulateGenres.Designer.cs">
       <DependentUpon>202003281858004_PopulateGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003282138588_UpdateVenueStringLength.cs" />
+    <Compile Include="Migrations\202003282138588_UpdateVenueStringLength.Designer.cs">
+      <DependentUpon>202003282138588_UpdateVenueStringLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -201,6 +206,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\GigFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -258,6 +264,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Gigs\Create.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003281858004_PopulateGenres.resx">
       <DependentUpon>202003281858004_PopulateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003282138588_UpdateVenueStringLength.resx">
+      <DependentUpon>202003282138588_UpdateVenueStringLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

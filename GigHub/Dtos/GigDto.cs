@@ -8,10 +8,14 @@ namespace GigHub.Dtos
     {
         public int Id { get; set; }
 
-        public DateTime DateTime { get; set; }
+        [Required]
+        public DateTime? Date { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [StringLength(244)]
+        public string Time { get; set; }
+
+        [Required(AllowEmptyStrings = false)]
+        [StringLength(255)]
         public string Venue { get; set; }
 
         public ApplicationUser Artist { get; set; }
@@ -22,6 +26,7 @@ namespace GigHub.Dtos
         public Genre Genre { get; set; }
 
         [Required]
+        [Display(Name = "Genre")]
         public int GenreId { get; set; }
     }
 }

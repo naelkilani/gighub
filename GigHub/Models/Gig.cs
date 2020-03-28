@@ -10,7 +10,7 @@ namespace GigHub.Models
         public DateTime DateTime { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [StringLength(244)]
+        [StringLength(255)]
         public string Venue { get; set; }
 
         public ApplicationUser Artist { get; set; }
@@ -19,7 +19,7 @@ namespace GigHub.Models
         public string ArtistId { get; set; }
 
         public Genre Genre { get; set; }
-        
+
         [Required]
         public int GenreId { get; set; }
     }

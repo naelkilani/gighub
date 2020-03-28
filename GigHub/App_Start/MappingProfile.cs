@@ -10,6 +10,9 @@ namespace GigHub.App_Start
         {
             CreateMap<Gig, GigDto>();
             CreateMap<GigDto, Gig>();
+
+            CreateMap<Genre, GenreDto>();
+            CreateMap<GenreDto, Genre>();
         }
     }
 }
