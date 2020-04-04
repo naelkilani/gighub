@@ -9,10 +9,12 @@ namespace GigHub.Dtos
         public int Id { get; set; }
 
         [Required]
-        public DateTime? Date { get; set; }
+        public string Date { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         public string Time { get; set; }
+
+        public DateTime DateTime => DateTime.Parse($"{Date} {Time}");
 
         [Required(AllowEmptyStrings = false)]
         [StringLength(255)]
