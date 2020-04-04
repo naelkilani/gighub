@@ -1,4 +1,5 @@
 ﻿using GigHub.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,13 +9,22 @@ namespace GigHub.Dtos
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         public string Date { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         public string Time { get; set; }
 
-        public DateTime DateTime => DateTime.Parse($"{Date} {Time}");
+        public DateTime DateTime
+        {
+            get
+            {
+                if (Date.IsNullOrWhiteSpace() || Time.IsNullOrWhiteSpace())
+                    return new DateTime();
+
+                return DateTime.Parse($"{Date} {Time}");
+            }
+        }
 
         [Required(AllowEmptyStrings = false)]
         [StringLength(255)]

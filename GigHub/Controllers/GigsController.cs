@@ -46,6 +46,17 @@ namespace GigHub.Controllers
 
         public ActionResult Save(GigDto gigDto)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new GigFormViewModel
+                {
+                    GigDto = gigDto,
+                    GenreDtos = _context.Genres.Select(Mapper.Map<Genre, GenreDto>).ToList()
+                };
+
+                return View("GigForm", viewModel);
+            }
+
             if (gigDto.Id == 0)
                 AddGig(gigDto);
             else
