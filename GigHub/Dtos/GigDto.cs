@@ -15,6 +15,7 @@ namespace GigHub.Dtos
         public string Date { get; set; }
 
         [Required(AllowEmptyStrings = false)]
+        [Time]
         public string Time { get; set; }
 
         public DateTime DateTime

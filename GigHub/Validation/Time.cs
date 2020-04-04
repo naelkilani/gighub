@@ -6,29 +6,29 @@ using System.Linq;
 
 namespace GigHub.Validation
 {
-    public class FutureDate : ValidationAttribute
+    public class Time : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var isValid = DateTime.TryParseExact(
                 Convert.ToString(value),
-                "d MMM yyyy",
+                "HH:mm",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
-                out var dateTime);
+                out _);
 
-            return isValid && dateTime > DateTime.Now
+            return isValid
                 ? ValidationResult.Success
-                : new ValidationResult($"{GetDisplayName()} should be in format 'd MMM yyyy' and points to future date.");
+                : new ValidationResult($"{GetDisplayName()} should be in format 'HH:mm'.");
 
         }
 
         private string GetDisplayName()
         {
-            const string defaultValidationMsg = "Date field";
+            const string defaultValidationMsg = "Time field";
             try
             {
-                var property = typeof(GigDto).GetProperty("Date");
+                var property = typeof(GigDto).GetProperty("Time");
                 if (property == null)
                     return defaultValidationMsg;
 
