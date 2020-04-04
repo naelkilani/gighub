@@ -22,10 +22,12 @@ namespace GigHub.Dtos
         {
             get
             {
-                if (Date.IsNullOrWhiteSpace() || Time.IsNullOrWhiteSpace())
+                if (Date.IsNullOrWhiteSpace() ||
+                    Time.IsNullOrWhiteSpace() ||
+                    !DateTime.TryParse($"{Date} {Time}", out var dateTime))
                     return new DateTime();
 
-                return DateTime.Parse($"{Date} {Time}");
+                return dateTime;
             }
         }
 
