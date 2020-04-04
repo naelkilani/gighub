@@ -37,7 +37,6 @@ namespace GigHub.Dtos
 
         public ApplicationUser Artist { get; set; }
 
-        [Required]
         public string ArtistId { get; set; }
 
         public Genre Genre { get; set; }
