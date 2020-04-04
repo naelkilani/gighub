@@ -38,8 +38,30 @@ textarea {
     color: #fff;
 }
 
+body {
+    font-size: 17px;
+}
+
 body,
 .tooltip,
 .popover {
     font-family: Lato,"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    font-size: 17px;
+    padding: 20px 15px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.btn {
+    font-size: 17px;
+    padding: 7px 24px;
+    -ms-border-radius: 9px;
+    border-radius: 9px;
 }
