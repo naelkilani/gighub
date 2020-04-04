@@ -10,11 +10,11 @@ namespace GigHub.Dtos
     {
         public int Id { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
+        [Required]
         [FutureDate]
         public string Date { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
+        [Required]
         [Time]
         public string Time { get; set; }
 
@@ -31,7 +31,7 @@ namespace GigHub.Dtos
             }
         }
 
-        [Required(AllowEmptyStrings = false)]
+        [Required]
         [StringLength(255)]
         public string Venue { get; set; }
 

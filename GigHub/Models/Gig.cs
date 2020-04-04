@@ -7,9 +7,10 @@ namespace GigHub.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public DateTime DateTime { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
+        [Required]
         [StringLength(255)]
         public string Venue { get; set; }
 
