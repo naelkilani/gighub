@@ -37,3 +37,9 @@ textarea {
 .navbar-inverse .navbar-brand {
     color: #fff;
 }
+
+body,
+.tooltip,
+.popover {
+    font-family: Lato,"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
