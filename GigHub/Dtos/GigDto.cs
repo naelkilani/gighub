@@ -1,4 +1,5 @@
 ﻿using GigHub.Models;
+using GigHub.Validation;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,7 @@ namespace GigHub.Dtos
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
+        [FutureDate]
         public string Date { get; set; }
 
         [Required(AllowEmptyStrings = false)]
