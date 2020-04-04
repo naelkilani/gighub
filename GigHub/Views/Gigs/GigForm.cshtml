@@ -31,6 +31,7 @@
 
     @Html.HiddenFor(m => m.GigDto.Id)
     @Html.HiddenFor(m => m.GigDto.ArtistId)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
