@@ -1,6 +1,5 @@
 ﻿using GigHub.Models;
 using GigHub.Validation;
-using Microsoft.Ajax.Utilities;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,6 +7,8 @@ namespace GigHub.Dtos
 {
     public class GigDto
     {
+        private DateTime _dateTime;
+
         public int Id { get; set; }
 
         [Required]
@@ -22,12 +23,17 @@ namespace GigHub.Dtos
         {
             get
             {
-                if (Date.IsNullOrWhiteSpace() ||
-                    Time.IsNullOrWhiteSpace() ||
-                    !DateTime.TryParse($"{Date} {Time}", out var dateTime))
-                    return new DateTime();
+                if (_dateTime != default)
+                    return _dateTime;
 
-                return dateTime;
+                DateTime.TryParse($"{Date} {Time}", out _dateTime);
+
+                return _dateTime;
+            }
+
+            set
+            {
+                _dateTime = value;
             }
         }
 

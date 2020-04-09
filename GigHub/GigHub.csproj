@@ -197,6 +197,10 @@
     <Compile Include="Migrations\202003282138588_UpdateVenueStringLength.Designer.cs">
       <DependentUpon>202003282138588_UpdateVenueStringLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004092318446_AddNameToApplicationUser.cs" />
+    <Compile Include="Migrations\202004092318446_AddNameToApplicationUser.Designer.cs">
+      <DependentUpon>202004092318446_AddNameToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -312,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003282138588_UpdateVenueStringLength.resx">
       <DependentUpon>202003282138588_UpdateVenueStringLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004092318446_AddNameToApplicationUser.resx">
+      <DependentUpon>202004092318446_AddNameToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
