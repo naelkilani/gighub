@@ -8,19 +8,20 @@
 
 @using (Html.BeginForm("Save", "Gigs"))
 {
+    <p class="alert alert-info">All fields are <strong >required</strong>.</p>
     <div class="form-group">
         @Html.LabelFor(m => m.GigDto.Venue)
-        @Html.TextBoxFor(m => m.GigDto.Venue, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.GigDto.Venue, new { @class = "form-control", autofocus = "autofocus" })
         @Html.ValidationMessageFor(m => m.GigDto.Venue)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.GigDto.Date)
-        @Html.TextBoxFor(m => m.GigDto.Date, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.GigDto.Date, "{0:d MMM yyyy}", new { @class = "form-control", placeholder = "1 Jan 2020" })
         @Html.ValidationMessageFor(m => m.GigDto.Date)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.GigDto.Time)
-        @Html.TextBoxFor(m => m.GigDto.Time, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.GigDto.Time, new { @class = "form-control", placeholder = "20:00" })
         @Html.ValidationMessageFor(m => m.GigDto.Time)
     </div>
     <div class="form-group">
