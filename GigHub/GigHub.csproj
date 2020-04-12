@@ -201,8 +201,13 @@
     <Compile Include="Migrations\202004092318446_AddNameToApplicationUser.Designer.cs">
       <DependentUpon>202004092318446_AddNameToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004121442128_AddAttendance.cs" />
+    <Compile Include="Migrations\202004121442128_AddAttendance.Designer.cs">
+      <DependentUpon>202004121442128_AddAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -319,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004092318446_AddNameToApplicationUser.resx">
       <DependentUpon>202004092318446_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121442128_AddAttendance.resx">
+      <DependentUpon>202004121442128_AddAttendance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
