@@ -89,3 +89,20 @@ body,
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
+
+/* Page-Level styles */
+
+.gigs {
+    list-style: none;
+}
+
+.gigs > li {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.gigs > li .details {
+    position: absolute;
+    top: 0;
+    left: 70px;
+}

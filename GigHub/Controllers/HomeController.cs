@@ -21,6 +21,7 @@ namespace GigHub.Controllers
         {
             var upcomingGigsDtos = _context.Gigs
                 .Include(g => g.Artist)
+                .Include(g => g.Genre)
                 .Where(g => g.DateTime > DateTime.Now)
                 .OrderBy(g => g.DateTime)
                 .ToList()
