@@ -84,10 +84,13 @@ body,
 }
 
 .btn {
-    font-size: 17px;
-    padding: 7px 24px;
     -ms-border-radius: 9px;
     border-radius: 9px;
+}
+
+.btn-primary {
+    font-size: 17px;
+    padding: 7px 24px;
 }
 
 /* Page-Level styles */
