@@ -136,6 +136,7 @@ body,
     position: absolute;
     top: 0;
     left: 70px;
+    width: 140px;
 }
 
 .gigs > li .details .artist {
