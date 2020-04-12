@@ -58,5 +58,9 @@ namespace GigHub.Dtos
         public string Day => _dateTime != default
             ? DateTime.ToString("d ")
             : string.Empty;
+
+        public string Year => _dateTime != default
+            ? DateTime.ToString("yyyy")
+            : string.Empty;
     }
 }

@@ -124,6 +124,10 @@ body,
     padding: 6px 12px;
 }
 
+.gigs > li .date .year {
+    background: #f7f7f7;
+    color: #333;
+}
 
 .gigs > li .details {
     position: absolute;
