@@ -73,7 +73,8 @@ namespace GigHub.Controllers
 
         public ActionResult Edit(int id)
         {
-            var gig = _context.Gigs.FirstOrDefault(g => g.Id == id);
+            var userId = User.Identity.GetUserId();
+            var gig = _context.Gigs.FirstOrDefault(g => g.Id == id && g.ArtistId == userId);
 
             if (gig == null)
                 return HttpNotFound();
