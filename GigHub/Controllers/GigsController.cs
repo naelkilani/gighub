@@ -20,6 +20,19 @@ namespace GigHub.Controllers
             _context = new ApplicationDbContext();
         }
 
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+
+            var myGigDtos = _context.Gigs
+                .Include(g => g.Genre)
+                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+                .OrderBy(g => g.DateTime)
+                .Select(Mapper.Map<Gig, GigDto>);
+
+            return View(myGigDtos);
+        }
+
         public ActionResult Attending()
         {
             var userId = User.Identity.GetUserId();
@@ -96,7 +109,7 @@ namespace GigHub.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Gigs");
         }
 
         private void AddGig(GigDto gigDto)

@@ -146,7 +146,7 @@ body,
     width: 150px;
 }
 
-.gigs > li .details .artist {
+.gigs > li .details .artist,.venue {
     font-weight: bold;
     display: block;
 }

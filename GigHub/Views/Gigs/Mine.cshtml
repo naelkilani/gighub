@@ -1,0 +1,32 @@
+﻿@model IEnumerable<GigHub.Dtos.GigDto>
+
+@{
+    ViewBag.Title = "My Upcoming Gigs";
+}
+
+@if (!Model.Any())
+{
+    <h1>You don't have any upcoming gigs.</h1>
+}
+else
+{
+    <h1 class="voffset5">My Upcoming Gigs</h1>
+
+    <ul class="gigs voffset5">
+        @foreach (var gig in Model)
+        {
+            <li>
+                <div class="date">
+                    <div class="month">@gig.Month</div>
+                    <div class="day">@gig.Day</div>
+                    <div class="year">@gig.Year</div>
+                </div>
+                <div class="details">
+                    <span class="venue">@gig.Venue</span>
+                    <span class="genre">@gig.Genre.Name</span>
+                </div>
+            </li>
+        }
+    </ul>
+
+}
