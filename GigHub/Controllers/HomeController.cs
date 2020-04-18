@@ -24,7 +24,6 @@ namespace GigHub.Controllers
                 .Include(g => g.Genre)
                 .Where(g => g.DateTime > DateTime.Now)
                 .OrderBy(g => g.DateTime)
-                .ToList()
                 .Select(Mapper.Map<Gig, GigDto>);
 
             return View(upcomingGigsDtos);

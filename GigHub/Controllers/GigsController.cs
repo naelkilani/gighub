@@ -3,6 +3,8 @@ using GigHub.Dtos;
 using GigHub.Models;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -16,6 +18,28 @@ namespace GigHub.Controllers
         public GigsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        public ActionResult Attending()
+        {
+            var userId = User.Identity.GetUserId();
+
+            // This is bad code adding Attendance table instead of Link Table is better.
+            var attendingGigsIds = _context.Users
+                .Include(u => u.Gigs)
+                .First(x => x.Id == userId)
+                .Gigs
+                .Select(g => g.Id)
+                .ToList();
+
+            var attendingGigsDtos = _context.Gigs
+                .Include(g => g.Genre)
+                .Include(g => g.Artist)
+                .Where(g => attendingGigsIds.Contains(g.Id) && g.DateTime > DateTime.Now)
+                .OrderBy(g => g.DateTime)
+                .Select(Mapper.Map<Gig, GigDto>);
+
+            return View(attendingGigsDtos);
         }
 
         public ActionResult New()
