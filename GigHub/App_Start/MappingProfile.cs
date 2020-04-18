@@ -13,6 +13,8 @@ namespace GigHub.App_Start
 
             CreateMap<Genre, GenreDto>();
             CreateMap<GenreDto, Genre>();
+
+            CreateMap<ApplicationUser, ArtistDto>();
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<GigHub.Dtos.ArtistDto>
+
+@{
+    ViewBag.Title = "Following Artists";
+}
+
+@if (!Model.Any())
+{
+    <h1>There isn't any artist you are following.</h1>
+}
+else
+{
+    <h1 class="voffset5">Who I Follow</h1>
+
+    <ul>
+        @foreach (var artist in Model)
+        {
+            <li>@artist.Name</li>
+        }
+    </ul>
+}
