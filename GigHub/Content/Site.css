@@ -154,3 +154,13 @@ body,
 .gigs > li .details .genre {
     font-size: 15px;
 }
+
+.gigs > li .actions {
+    font-size: 15px;
+    margin-top: 20px;
+    display: none;
+}
+
+.gigs > li:hover .actions {
+    display: block;
+}
