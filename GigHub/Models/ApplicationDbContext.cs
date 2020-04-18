@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace GigHub.Models
 {
@@ -7,7 +8,6 @@ namespace GigHub.Models
     {
         public DbSet<Gig> Gigs { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Following> Followings { get; set; }
 
         public ApplicationDbContext()
@@ -22,10 +22,18 @@ namespace GigHub.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Attendance>()
-                .HasRequired(a => a.Gig)
-                .WithMany()
-                .WillCascadeOnDelete(false);
+            // There is maybe a better way to do this. 
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Gig>()
+                .HasMany(g => g.Attendees)
+                .WithMany(u => u.Gigs)
+                .Map(m =>
+                {
+                    m.ToTable("Attendances");
+                    m.MapLeftKey("GigId");
+                    m.MapRightKey("AttendeeId");
+                });
 
             modelBuilder.Entity<ApplicationUser>()
                 .HasMany(u => u.Followers)

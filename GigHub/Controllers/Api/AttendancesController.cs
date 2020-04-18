@@ -1,8 +1,10 @@
 ﻿using GigHub.Dtos;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+
 
 namespace GigHub.Controllers.Api
 {
@@ -25,17 +27,12 @@ namespace GigHub.Controllers.Api
                 return NotFound();
 
             var userId = User.Identity.GetUserId();
+            var user = _context.Users.Include(u => u.Gigs).First(x => x.Id == userId);
 
-            if (_context.Attendances.Any(a => a.GigId == attendanceDto.GigId && a.AttendeeId == userId))
+            if (user.Gigs.Any(g => g.Id == gig.Id))
                 return BadRequest("The attendance already exists.");
 
-            var attendance = new Attendance
-            {
-                GigId = attendanceDto.GigId,
-                AttendeeId = userId
-            };
-
-            _context.Attendances.Add(attendance);
+            user.Gigs.Add(gig);
             _context.SaveChanges();
 
             return Ok();

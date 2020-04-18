@@ -223,9 +223,16 @@
     <Compile Include="Migrations\202004121905283_AddFollowing.Designer.cs">
       <DependentUpon>202004121905283_AddFollowing.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004181538586_Test.cs" />
+    <Compile Include="Migrations\202004181538586_Test.Designer.cs">
+      <DependentUpon>202004181538586_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004181555062_AddManyToManyTableAttendances.cs" />
+    <Compile Include="Migrations\202004181555062_AddManyToManyTableAttendances.Designer.cs">
+      <DependentUpon>202004181555062_AddManyToManyTableAttendances.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Gig.cs" />
@@ -349,6 +356,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004121905283_AddFollowing.resx">
       <DependentUpon>202004121905283_AddFollowing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004181538586_Test.resx">
+      <DependentUpon>202004181538586_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004181555062_AddManyToManyTableAttendances.resx">
+      <DependentUpon>202004181555062_AddManyToManyTableAttendances.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

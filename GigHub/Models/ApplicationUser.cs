@@ -15,11 +15,13 @@ namespace GigHub.Models
         [StringLength(255)]
         public string Name { get; set; }
 
+        public ICollection<Gig> Gigs { get; set; }
         public ICollection<Following> Followers { get; set; }
         public ICollection<Following> Followees { get; set; }
 
         public ApplicationUser()
         {
+            Gigs = new Collection<Gig>();
             Followees = new Collection<Following>();
             Followees = new Collection<Following>();
         }
