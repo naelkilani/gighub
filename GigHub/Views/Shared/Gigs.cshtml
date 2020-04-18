@@ -1,11 +1,13 @@
-﻿@model IEnumerable<GigHub.Dtos.GigDto>
+﻿@model GigHub.ViewModels.GigsViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 
-<ul class="gigs">
-    @foreach (var gig in Model)
+<h1>@Model.Heading</h1>
+
+<ul class="gigs voffset5">
+    @foreach (var gig in Model.GigDtos)
     {
         <li>
             <div class="date">

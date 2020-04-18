@@ -39,7 +39,13 @@ namespace GigHub.Controllers
                 .OrderBy(g => g.DateTime)
                 .Select(Mapper.Map<Gig, GigDto>);
 
-            return View(attendingGigsDtos);
+            var viewModel = new GigsViewModel
+            {
+                GigDtos = attendingGigsDtos,
+                Heading = "Gigs I'm Attending"
+            };
+
+            return View("Gigs", viewModel);
         }
 
         public ActionResult New()

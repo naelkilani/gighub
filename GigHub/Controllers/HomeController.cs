@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GigHub.Dtos;
 using GigHub.Models;
+using GigHub.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -26,7 +27,13 @@ namespace GigHub.Controllers
                 .OrderBy(g => g.DateTime)
                 .Select(Mapper.Map<Gig, GigDto>);
 
-            return View(upcomingGigsDtos);
+            var viewModel = new GigsViewModel
+            {
+                GigDtos = upcomingGigsDtos,
+                Heading = "Upcoming Gigs"
+            };
+
+            return View("Gigs", viewModel);
         }
 
         public ActionResult About()
