@@ -8,16 +8,26 @@ namespace GigHub.Dtos
     public class GigDto
     {
         private DateTime _dateTime;
+        private string _date;
+        private string _time;
 
         public int Id { get; set; }
 
         [Required]
         [FutureDate]
-        public string Date { get; set; }
+        public string Date
+        {
+            get => _dateTime == default ? string.Empty : _dateTime.ToString("d MMM yyyy");
+            set => _date = value;
+        }
 
         [Required]
         [Time]
-        public string Time { get; set; }
+        public string Time
+        {
+            get => _dateTime == default ? string.Empty : _dateTime.ToString("HH:mm");
+            set => _time = value;
+        }
 
         public DateTime DateTime
         {
@@ -26,7 +36,7 @@ namespace GigHub.Dtos
                 if (_dateTime != default)
                     return _dateTime;
 
-                DateTime.TryParse($"{Date} {Time}", out _dateTime);
+                DateTime.TryParse($"{_date} {_time}", out _dateTime);
 
                 return _dateTime;
             }

@@ -8,7 +8,7 @@
 
 @using (Html.BeginForm("Save", "Gigs"))
 {
-    <p class="alert alert-info">All fields are <strong >required</strong>.</p>
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
     <div class="form-group">
         @Html.LabelFor(m => m.GigDto.Venue)
         @Html.TextBoxFor(m => m.GigDto.Venue, new { @class = "form-control", autofocus = "autofocus" })
