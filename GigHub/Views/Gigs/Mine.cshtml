@@ -27,11 +27,41 @@ else
                     <div class="actions">
                         <a href="@Url.Action("Edit", "Gigs", new {id = gig.Id})">
                             Edit
+                        </a> |
+                        <a class="js-cancel-gig" data-gig-id="@gig.Id">
+                            Cancel
                         </a>
                     </div>
                 </div>
             </li>
         }
     </ul>
+}
 
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-cancel-gig").click(function(e) {
+                var cancelLink = $(e.target);
+
+                if (confirm("Are you sure you want to cancel this event?")) {
+                    $.ajax(
+                    {
+                        url: "/api/gigs/" + cancelLink.attr("data-gig-id"),
+                        method: "DELETE"
+                    })
+                    .done(function() {
+                        cancelLink.parents("li").fadeOut(function() {
+                            $(this).remove();
+                        });
+                    })
+                    .fail(function () {
+                        alert("An error has occured!");
+                    });
+                }
+            });
+        });
+    </script>
 }
