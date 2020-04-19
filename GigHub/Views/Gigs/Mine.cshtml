@@ -46,21 +46,37 @@ else
             $(".js-cancel-gig").click(function(e) {
                 var cancelLink = $(e.target);
 
-                if (confirm("Are you sure you want to cancel this event?")) {
-                    $.ajax(
-                    {
-                        url: "/api/gigs/" + cancelLink.attr("data-gig-id"),
-                        method: "DELETE"
-                    })
-                    .done(function() {
-                        cancelLink.parents("li").fadeOut(function() {
-                            $(this).remove();
-                        });
-                    })
-                    .fail(function () {
-                        alert("An error has occured!");
-                    });
-                }
+                bootbox.confirm({
+                    message: "Are you sure you want to cancel this event?",
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'No',
+                            className: 'btn-default'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/gigs/" + cancelLink.attr("data-gig-id"),
+                                method: "DELETE"
+                            })
+                            .done(function() {
+                                cancelLink.parents("li").fadeOut(function() {
+                                    $(this).remove();
+                                });
+                            })
+                            .fail(function() {
+                                alert("An error has occured!");
+                            });
+                        } else {
+                            bootbox.hideAll();
+                        }
+                    }
+                });
             });
         });
     </script>
