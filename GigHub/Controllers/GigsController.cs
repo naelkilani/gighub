@@ -26,7 +26,7 @@ namespace GigHub.Controllers
 
             var myGigDtos = _context.Gigs
                 .Include(g => g.Genre)
-                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now && g.Active)
                 .OrderBy(g => g.DateTime)
                 .Select(Mapper.Map<Gig, GigDto>);
 

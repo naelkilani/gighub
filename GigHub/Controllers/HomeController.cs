@@ -23,7 +23,7 @@ namespace GigHub.Controllers
             var upcomingGigsDtos = _context.Gigs
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now)
+                .Where(g => g.DateTime > DateTime.Now && g.Active)
                 .OrderBy(g => g.DateTime)
                 .Select(Mapper.Map<Gig, GigDto>);
 

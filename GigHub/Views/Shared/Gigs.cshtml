@@ -18,13 +18,19 @@
             <div class="details">
                 <span class="artist">
                     @gig.Artist.Name
+                    
+                    @if (!gig.Active)
+                    {
+                        <span class="label label-warning">Canceled</span>
+                    }
+
                     @if (Request.IsAuthenticated)
                     {
                         <button data-artist-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-following">Follow</button>
                     }
-                </span>
+                </span> 
                 <span class="genre">@gig.Genre.Name</span>
-                @if (Request.IsAuthenticated)
+                @if (Request.IsAuthenticated && gig.Active)
                 {
                     <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
                 }
