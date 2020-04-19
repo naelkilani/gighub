@@ -61,6 +61,8 @@ namespace GigHub.Dtos
         [Display(Name = "Genre")]
         public int GenreId { get; set; }
 
+        public bool Active { get; set; }
+
         public string Month => _dateTime != default
             ? DateTime.ToString("MMM")
             : string.Empty;

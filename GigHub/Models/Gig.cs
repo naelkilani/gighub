@@ -26,6 +26,9 @@ namespace GigHub.Models
         [Required]
         public int GenreId { get; set; }
 
+        [Required]
+        public bool Active { get; set; }
+
         public ICollection<ApplicationUser> Attendees { get; set; }
 
         public Gig()

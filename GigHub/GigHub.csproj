@@ -233,6 +233,14 @@
     <Compile Include="Migrations\202004181555062_AddManyToManyTableAttendances.Designer.cs">
       <DependentUpon>202004181555062_AddManyToManyTableAttendances.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004191323420_AddActiveToGigModel.cs" />
+    <Compile Include="Migrations\202004191323420_AddActiveToGigModel.Designer.cs">
+      <DependentUpon>202004191323420_AddActiveToGigModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004191326428_UpdateExistingGigs.cs" />
+    <Compile Include="Migrations\202004191326428_UpdateExistingGigs.Designer.cs">
+      <DependentUpon>202004191326428_UpdateExistingGigs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Following.cs" />
@@ -367,6 +375,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004181555062_AddManyToManyTableAttendances.resx">
       <DependentUpon>202004181555062_AddManyToManyTableAttendances.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004191323420_AddActiveToGigModel.resx">
+      <DependentUpon>202004191323420_AddActiveToGigModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004191326428_UpdateExistingGigs.resx">
+      <DependentUpon>202004191326428_UpdateExistingGigs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
