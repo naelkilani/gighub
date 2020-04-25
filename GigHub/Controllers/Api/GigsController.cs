@@ -48,13 +48,7 @@ namespace GigHub.Controllers.Api
 
             foreach (var attendee in gig.Attendees)
             {
-                var userNotification = new UserNotification
-                {
-                    UserId = attendee.Id,
-                    NotificationId = notification.Id
-                };
-
-                _context.UserNotifications.Add(userNotification);
+                attendee.Notify(notification);
             }
         }
     }

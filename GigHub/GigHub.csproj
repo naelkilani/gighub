@@ -246,6 +246,10 @@
     <Compile Include="Migrations\202004251255304_AddNotification.Designer.cs">
       <DependentUpon>202004251255304_AddNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004251434006_Dummy.cs" />
+    <Compile Include="Migrations\202004251434006_Dummy.Designer.cs">
+      <DependentUpon>202004251434006_Dummy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Following.cs" />
@@ -393,6 +397,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004251255304_AddNotification.resx">
       <DependentUpon>202004251255304_AddNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251434006_Dummy.resx">
+      <DependentUpon>202004251434006_Dummy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
