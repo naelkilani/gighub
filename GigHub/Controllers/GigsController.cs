@@ -123,8 +123,9 @@ namespace GigHub.Controllers
 
         private void UpdateGig(GigDto gigDto)
         {
-            var gig = _context.Gigs.First(g => g.Id == gigDto.Id);
-            Mapper.Map(gigDto, gig);
+            var gig = _context.Gigs.Include(g => g.Attendees).First(g => g.Id == gigDto.Id);
+            
+            gig.Modify(gigDto);
         }
     }
 }

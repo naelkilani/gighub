@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoMapper;
+using GigHub.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
@@ -26,8 +28,8 @@ namespace GigHub.Models
         [Required]
         public int GenreId { get; set; }
 
-        [Required]
-        public bool Active { get; private set; }
+        [Required] 
+        public bool Active { get; private set; } = true;
 
         public ICollection<ApplicationUser> Attendees { get; set; }
 
@@ -40,12 +42,25 @@ namespace GigHub.Models
         {
             Active = false;
 
-            var notification = new Notification
-            {
-                GigId = Id,
-                Type = NotificationType.GigCanceled
-            };
+            var notification = Notification.GigCanceled(this);
 
+            Notify(notification);
+        }
+
+        public void Modify(GigDto gigDto)
+        {
+            var originalDateTime = DateTime;
+            var originalVenue = Venue;
+
+            Mapper.Map(gigDto, this);
+
+            var notification = Notification.GigUpdated(this, originalDateTime, originalVenue);
+
+            Notify(notification);
+        }
+
+        public void Notify(Notification notification)
+        {
             foreach (var attendee in Attendees)
             {
                 attendee.Notify(notification);

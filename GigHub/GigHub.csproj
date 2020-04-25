@@ -258,6 +258,10 @@
     <Compile Include="Migrations\202004251528154_AnyChange.Designer.cs">
       <DependentUpon>202004251528154_AnyChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004252316382_Foo.cs" />
+    <Compile Include="Migrations\202004252316382_Foo.Designer.cs">
+      <DependentUpon>202004252316382_Foo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Following.cs" />
@@ -414,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004251528154_AnyChange.resx">
       <DependentUpon>202004251528154_AnyChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004252316382_Foo.resx">
+      <DependentUpon>202004252316382_Foo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
