@@ -242,12 +242,19 @@
     <Compile Include="Migrations\202004191326428_UpdateExistingGigs.Designer.cs">
       <DependentUpon>202004191326428_UpdateExistingGigs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004251255304_AddNotification.cs" />
+    <Compile Include="Migrations\202004251255304_AddNotification.Designer.cs">
+      <DependentUpon>202004251255304_AddNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Following.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validation\FutureDate.cs" />
@@ -383,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004191326428_UpdateExistingGigs.resx">
       <DependentUpon>202004191326428_UpdateExistingGigs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251255304_AddNotification.resx">
+      <DependentUpon>202004251255304_AddNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
