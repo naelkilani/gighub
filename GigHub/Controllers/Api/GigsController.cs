@@ -25,29 +25,11 @@ namespace GigHub.Controllers.Api
             if (gig == null || !gig.Active)
                 return NotFound();
 
-            gig.Active = false;
-
-            AddCanceledNotifications(gig);
+            gig.Cancel();
 
             _context.SaveChanges();
 
             return Ok();
-        }
-
-        private void AddCanceledNotifications(Gig gig)
-        {
-            var notification = new Notification
-            {
-                GigId = gig.Id,
-                Type = NotificationType.GigCanceled
-            };
-
-            _context.Notifications.Add(notification);
-
-            foreach (var attendee in gig.Attendees)
-            {
-                attendee.Notify(notification);
-            }
         }
     }
 }

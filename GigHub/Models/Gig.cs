@@ -27,13 +27,29 @@ namespace GigHub.Models
         public int GenreId { get; set; }
 
         [Required]
-        public bool Active { get; set; }
+        public bool Active { get; private set; }
 
         public ICollection<ApplicationUser> Attendees { get; set; }
 
         public Gig()
         {
             Attendees = new Collection<ApplicationUser>();
+        }
+
+        public void Cancel()
+        {
+            Active = false;
+
+            var notification = new Notification
+            {
+                GigId = Id,
+                Type = NotificationType.GigCanceled
+            };
+
+            foreach (var attendee in Attendees)
+            {
+                attendee.Notify(notification);
+            }
         }
     }
 }
