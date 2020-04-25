@@ -1,6 +1,5 @@
 ﻿using GigHub.Models;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
@@ -40,7 +39,6 @@ namespace GigHub.Controllers.Api
             var notification = new Notification
             {
                 GigId = gig.Id,
-                DateTime = DateTime.Now,
                 Type = NotificationType.GigCanceled
             };
 

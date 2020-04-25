@@ -250,6 +250,14 @@
     <Compile Include="Migrations\202004251434006_Dummy.Designer.cs">
       <DependentUpon>202004251434006_Dummy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004251506087_IsThereAnyChanges.cs" />
+    <Compile Include="Migrations\202004251506087_IsThereAnyChanges.Designer.cs">
+      <DependentUpon>202004251506087_IsThereAnyChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004251528154_AnyChange.cs" />
+    <Compile Include="Migrations\202004251528154_AnyChange.Designer.cs">
+      <DependentUpon>202004251528154_AnyChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Following.cs" />
@@ -400,6 +408,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004251434006_Dummy.resx">
       <DependentUpon>202004251434006_Dummy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251506087_IsThereAnyChanges.resx">
+      <DependentUpon>202004251506087_IsThereAnyChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004251528154_AnyChange.resx">
+      <DependentUpon>202004251528154_AnyChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
