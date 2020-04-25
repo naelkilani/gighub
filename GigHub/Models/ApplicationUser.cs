@@ -41,7 +41,7 @@ namespace GigHub.Models
             UserNotifications.Add(new UserNotification
             {
                 UserId = Id,
-                NotificationId = notification.Id
+                Notification = notification
             });
         }
     }
