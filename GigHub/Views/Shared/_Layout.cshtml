@@ -27,7 +27,7 @@
                 _.each(notifications, function(notification) {
                     if (notification.type == 1) { %>
                         <li>
-                            <%= notification.gig.artist.name %> has canceled the gig at <%= notification.gig.venue %>
+                            <span class="highlight"><%= notification.gig.artist.name %></span> has canceled the gig at <%= notification.gig.venue %>
                             on <%= notification.gig.date %> at <%= notification.gig.time %>
                         </li>
                     <% }
@@ -48,7 +48,7 @@
                             newValues.push(notification.gig.dateAndTime);
                         } %>
                         <li>
-                            <%= notification.gig.artist.name %> has changed the <%= changes.join(' and ') %> of the gig
+                            <span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ') %> of the gig
                             from <%= originalValues.join('/') %> to <%= newValues.join('/') %>
                         </li>
                     <% }
