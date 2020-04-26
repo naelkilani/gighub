@@ -54,6 +54,9 @@ namespace GigHub.Models
 
             Mapper.Map(gigDto, this);
 
+            if (originalDateTime == DateTime && originalVenue == Venue) 
+                return;
+
             var notification = Notification.GigUpdated(this, originalDateTime, originalVenue);
 
             Notify(notification);

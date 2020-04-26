@@ -27,6 +27,7 @@ namespace GigHub.Controllers.Api
                 .Include(u => u.UserNotifications.Select(un => un.Notification.Gig.Artist))
                 .First(u => u.Id == userId)
                 .UserNotifications
+                .Where(un => !un.IsRead)
                 .Select(un => un.Notification)
                 .Select(Mapper.Map<Notification, NotificationDto>);
 

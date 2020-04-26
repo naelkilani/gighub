@@ -28,6 +28,8 @@ namespace GigHub.Dtos
             set => _time = value;
         }
 
+        public string DateAndTime => $"{Date} {Time}";
+
         public DateTime DateTime
         {
             get

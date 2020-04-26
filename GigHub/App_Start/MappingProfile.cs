@@ -9,7 +9,8 @@ namespace GigHub.App_Start
         public MappingProfile()
         {
             CreateMap<Gig, GigDto>();
-            CreateMap<GigDto, Gig>();
+            CreateMap<GigDto, Gig>()
+                .ForMember(g => g.Active, opt => opt.Ignore());
 
             CreateMap<Genre, GenreDto>();
             CreateMap<GenreDto, Genre>();
