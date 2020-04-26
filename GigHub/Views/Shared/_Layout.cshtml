@@ -21,5 +21,16 @@
 
     @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function() {
+            $.getJSON("/api/notifications", function (notifications) {
+                if (notifications.length > 0) {
+                    $(".js-notifications-count")
+                        .text(notifications.length)
+                        .removeClass("hide");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
