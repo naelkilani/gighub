@@ -37,6 +37,11 @@ span.field-validation-error {
 
 /* Bootstrap Overrides */
 
+.popover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .navbar-inverse {
     background-color: #ff4342;
     border-color: #ff4342;
