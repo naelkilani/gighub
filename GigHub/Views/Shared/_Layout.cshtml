@@ -21,7 +21,7 @@
 
     @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
-<script type="text/x-template" id="notifications-template">
+    <script type="text/x-template" id="notifications-template">
         <ul>
             <%
                 _.each(notifications, function(notification) {
@@ -60,12 +60,13 @@
         $(document).ready(function() {
             $.getJSON("/api/notifications", function (notifications) {
 
-                if (notifications.length > 0) {
-                    $(".js-notifications-count")
-                        .text(notifications.length)
-                        .removeClass("hide")
-                        .addClass("animated bounceInDown");
-                }
+                if (notifications.length === 0)
+                    return;
+
+                $(".js-notifications-count")
+                .text(notifications.length)
+                .removeClass("hide")
+                .addClass("animated bounceInDown");
 
                 $(".notifications").popover({
                     html: true,
