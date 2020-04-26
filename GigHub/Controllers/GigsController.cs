@@ -37,18 +37,12 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            // This is bad code adding Attendance table instead of Link Table is better.
-            var attendingGigsIds = _context.Users
-                .Include(u => u.Gigs)
-                .First(x => x.Id == userId)
+            var attendingGigsDtos = _context.Users
+                .Include(u => u.Gigs.Select(g => g.Genre))
+                .Include(u => u.Gigs.Select(g => g.Artist))
+                .First(u => u.Id == userId)
                 .Gigs
-                .Select(g => g.Id)
-                .ToList();
-
-            var attendingGigsDtos = _context.Gigs
-                .Include(g => g.Genre)
-                .Include(g => g.Artist)
-                .Where(g => attendingGigsIds.Contains(g.Id) && g.DateTime > DateTime.Now)
+                .Where(g => g.DateTime > DateTime.Now)
                 .OrderBy(g => g.DateTime)
                 .Select(Mapper.Map<Gig, GigDto>);
 
