@@ -1,5 +1,4 @@
-﻿using GigHub.Models;
-using GigHub.Validation;
+﻿using GigHub.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -51,11 +50,11 @@ namespace GigHub.Dtos
         [StringLength(255)]
         public string Venue { get; set; }
 
-        public ApplicationUser Artist { get; set; }
+        public ArtistDto Artist { get; set; }
 
         public string ArtistId { get; set; }
 
-        public Genre Genre { get; set; }
+        public GenreDto Genre { get; set; }
 
         [Required]
         [Display(Name = "Genre")]
