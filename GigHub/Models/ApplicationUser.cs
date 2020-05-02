@@ -46,14 +46,38 @@ namespace GigHub.Models
             });
         }
 
-        public bool IsFollowing(Gig gig)
+        public void ChangeFollowing(string artistId)
         {
-            return Followees.Any(f => f.FolloweeId == gig.Artist.Id);
+            if (IsFollowing(artistId))
+                UnFollow(artistId);
+            else
+                Follow(artistId);
         }
 
-        public bool IsGoing(Gig gig)
+        public bool IsFollowing(string artistId)
         {
-            return Gigs.Any(g => g.Id == gig.Id);
+            return Followees.Any(f => f.FolloweeId == artistId);
+        }
+
+        private void Follow(string artistId)
+        {
+            Followees.Add(new Following
+            {
+                FollowerId = Id,
+                FolloweeId = artistId
+            });
+        }
+
+        private void UnFollow(string artistId)
+        {
+            var following = Followees.First(f => f.FolloweeId == artistId);
+
+            Followees.Remove(following);
+        }
+
+        public bool IsGoing(int gigId)
+        {
+            return Gigs.Any(g => g.Id == gigId);
         }
     }
 }

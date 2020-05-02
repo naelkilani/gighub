@@ -1,6 +1,7 @@
 ﻿using GigHub.Dtos;
 using GigHub.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 
@@ -24,22 +25,20 @@ namespace GigHub.Controllers.Api
             if (artist == null)
                 return NotFound();
 
-            var userId = User.Identity.GetUserId();
+            var user = GetUser();
 
-            if (_context.Followings.Any(f => f.FollowerId == userId &&
-                                             f.FolloweeId == followingDto.ArtistId))
-                return BadRequest("The following already exist.");
+            user.ChangeFollowing(followingDto.ArtistId);
 
-            var following = new Following
-            {
-                FollowerId = userId,
-                FolloweeId = followingDto.ArtistId
-            };
-
-            _context.Followings.Add(following);
             _context.SaveChanges();
 
             return Ok();
+        }
+
+        private ApplicationUser GetUser()
+        {
+            var userId = User.Identity.GetUserId();
+
+            return _context.Users.Include(u => u.Followees).First(u => u.Id == userId);
         }
     }
 }

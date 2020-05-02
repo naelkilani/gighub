@@ -40,11 +40,6 @@
                     {
                         <span class="label label-warning">Canceled</span>
                     }
-
-                    @if (Request.IsAuthenticated)
-                    {
-                        <button data-artist-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-following">Follow</button>
-                    }
                 </span> 
                 <span class="genre">@gig.Genre.Name</span>
                 @if (Request.IsAuthenticated && gig.Active)
@@ -69,18 +64,6 @@
                             .removeClass("btn-default")
                             .addClass("btn-info")
                             .text("Going");
-                    })
-                    .fail(function() {
-                        alert("An error has occured!");
-                    });
-            });
-
-            $(".js-toggle-following").click(function(e) {
-                var button = $(e.target);
-
-                $.post("/api/followings", { artistId: button.attr("data-artist-id") })
-                    .done(function() {
-                        button.text("Following");
                     })
                     .fail(function() {
                         alert("An error has occured!");

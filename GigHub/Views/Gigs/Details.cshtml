@@ -9,14 +9,7 @@
     @gig.Artist.Name
     @if (Request.IsAuthenticated)
     {
-        if (Model.IsFollowing)
-        {
-            <button class="btn btn-info">Following</button>
-        }
-        else
-        {
-            <button class="btn btn-default">Follow</button>
-        }
+        <button data-artist-id="@gig.ArtistId" data-isFollowing="@Model.IsFollowing" class="btn btn-default js-toggle-following"></button>
     }
 </h2>
 
@@ -31,4 +24,48 @@
 else if (Model.IsAttending)
 {
     <p>You are going to this event.</p>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var button = $(".js-toggle-following");
+
+            $(".js-toggle-following").click(function() {
+                $.post("/api/followings", { artistId: button.attr("data-artist-id") })
+                    .done(function () {
+                        changeFollowButtonState();
+                        displayFollowButton();
+                    })
+                    .fail(function() {
+                        alert("An error has occured!");
+                    });
+            });
+
+            displayFollowButton();
+
+            function changeFollowButtonState() {
+                button.attr("data-isFollowing") == "True"
+                    ? button.attr("data-isFollowing", "False")
+                    : button.attr("data-isFollowing", "True");
+            }
+
+            function displayFollowButton() {
+                var isFollowing = button.attr("data-isFollowing") == "True";
+                if (isFollowing) {
+                    button
+                        .removeClass("btn-default")
+                        .text("Following")
+                        .addClass("btn-info");
+                } else {
+                    button
+                        .removeClass("btn-info")
+                        .text("Follow")
+                        .addClass("btn-default");
+                }
+
+            }
+        });
+    </script>
 }

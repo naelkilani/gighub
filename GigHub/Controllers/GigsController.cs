@@ -150,8 +150,8 @@ namespace GigHub.Controllers
 
             var user = GetUser();
 
-            model.IsFollowing = user.IsFollowing(gig);
-            model.IsAttending = user.IsGoing(gig);
+            model.IsFollowing = user.IsFollowing(gig.Artist.Id);
+            model.IsAttending = user.IsGoing(gig.Id);
 
             return View(model);
         }
