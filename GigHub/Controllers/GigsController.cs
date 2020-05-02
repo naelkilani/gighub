@@ -123,6 +123,7 @@ namespace GigHub.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
         public ActionResult Search(string searchTerm)
         {
             return RedirectToAction("Index", "Home", new {query = searchTerm});
