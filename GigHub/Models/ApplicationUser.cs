@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -43,6 +44,16 @@ namespace GigHub.Models
                 UserId = Id,
                 Notification = notification
             });
+        }
+
+        public bool IsFollowing(Gig gig)
+        {
+            return Followees.Any(f => f.FolloweeId == gig.Artist.Id);
+        }
+
+        public bool IsGoing(Gig gig)
+        {
+            return Gigs.Any(g => g.Id == gig.Id);
         }
     }
 }
