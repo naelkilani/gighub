@@ -40,7 +40,8 @@ namespace GigHub.Controllers
             {
                 GigDtos = upcomingGigsDtos,
                 Heading = "Upcoming Gigs",
-                SearchTerm = query
+                SearchTerm = query,
+                AllowSearch = true
             };
 
             return View("Gigs", viewModel);
