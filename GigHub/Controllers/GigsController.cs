@@ -121,5 +121,11 @@ namespace GigHub.Controllers
             
             gig.Modify(gigDto);
         }
+
+        [AllowAnonymous]
+        public ActionResult Search(string searchTerm)
+        {
+            return RedirectToAction("Index", "Home", new {query = searchTerm});
+        }
     }
 }

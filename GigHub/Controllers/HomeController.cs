@@ -2,6 +2,7 @@
 using GigHub.Dtos;
 using GigHub.Models;
 using GigHub.ViewModels;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -18,19 +19,28 @@ namespace GigHub.Controllers
             _context = new ApplicationDbContext();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string query = null)
         {
-            var upcomingGigsDtos = _context.Gigs
+            var upcomingGigsQuery = _context.Gigs
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now && g.Active)
+                .Where(g => g.DateTime > DateTime.Now && g.Active);
+
+            if (!query.IsNullOrWhiteSpace())
+                upcomingGigsQuery = upcomingGigsQuery.Where(g =>
+                    g.Artist.Name.Contains(query) ||
+                    g.Genre.Name.Contains(query) ||
+                    g.Venue.Contains(query));
+            
+            var upcomingGigsDtos = upcomingGigsQuery
                 .OrderBy(g => g.DateTime)
                 .Select(Mapper.Map<Gig, GigDto>);
 
             var viewModel = new GigsViewModel
             {
                 GigDtos = upcomingGigsDtos,
-                Heading = "Upcoming Gigs"
+                Heading = "Upcoming Gigs",
+                SearchTerm = query
             };
 
             return View("Gigs", viewModel);
