@@ -7,5 +7,6 @@ namespace GigHub.ViewModels
     {
         public IEnumerable<GigDto> GigDtos = new List<GigDto>();
         public string Heading { get; set; }
+        public string SearchTerm { get; set; }
     }
 }
