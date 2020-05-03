@@ -27,6 +27,7 @@ namespace GigHub.Controllers.Api
 
             var user = GetUser();
 
+            //It is better to have separate API for DELETE action.  
             user.ChangeFollowing(followingDto.ArtistId);
 
             _context.SaveChanges();

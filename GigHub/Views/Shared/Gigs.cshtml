@@ -37,14 +37,18 @@
                     </a> 
 
                     @if (!gig.Active)
-                    {
+                    {   
                         <span class="label label-warning">Canceled</span>
                     }
                 </span> 
                 <span class="genre">@gig.Genre.Name</span>
                 @if (Request.IsAuthenticated && gig.Active)
                 {
-                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
+                    <button data-gig-id="@gig.Id"
+                            class="btn @(gig.IsGoing ? "btn-info" : "btn-default") 
+                            btn-sm pull-right js-toggle-attendance">
+                        @gig.IsGoingDisplay
+                    </button>
                 }
             </div>
         </li>
@@ -58,16 +62,32 @@
             $(".js-toggle-attendance").click(function (e) {
                 var button = $(e.target);
 
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
-                    .done(function() {
-                        button
-                            .removeClass("btn-default")
-                            .addClass("btn-info")
-                            .text("Going");
-                    })
-                    .fail(function() {
-                        alert("An error has occured!");
-                    });
+                if (button.hasClass("btn-default")) {
+                    $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
+                        .done(function() {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Going");
+                        })
+                        .fail(function() {
+                            alert("An error has occured!");
+                        });
+                } else {
+                    $.ajax({
+                        url: "/api/attendances/" + button.attr("data-gig-id"),
+                            method: "DELETE"
+                        })
+                        .done(function () {
+                            button
+                                .removeClass("btn-info")
+                                .addClass("btn-default")
+                                .text("Going?");
+                        })
+                        .fail(function () {
+                            alert("Something failed");
+                        });
+                }
             });
         });
     </script>

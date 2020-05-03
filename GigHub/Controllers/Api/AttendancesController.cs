@@ -26,16 +26,44 @@ namespace GigHub.Controllers.Api
             if (gig == null)
                 return NotFound();
 
-            var userId = User.Identity.GetUserId();
-            var user = _context.Users.Include(u => u.Gigs).First(x => x.Id == userId);
+            var user = GetUser();
 
-            if (user.Gigs.Any(g => g.Id == gig.Id))
+            if (user.IsAttending(gig.Id))
                 return BadRequest("The attendance already exists.");
 
-            user.Gigs.Add(gig);
+            user.Attending(gig);
             _context.SaveChanges();
 
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
+        {
+            var gig = _context.Gigs.FirstOrDefault(g => g.Id == id);
+
+            if (gig == null)
+                return NotFound();
+
+            var user = GetUser();
+
+            if (!user.IsAttending(gig.Id))
+                return NotFound();
+
+            user.NotAttending(gig);
+            _context.SaveChanges();
+
+            return Ok(id);
+        }
+
+        private ApplicationUser GetUser()
+        {
+            var userId = User.Identity.GetUserId();
+
+            return _context.Users
+                .Include(u => u.Gigs)
+                .First(u => u.Id == userId);
+        }
+
     }
 }

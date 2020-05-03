@@ -42,15 +42,10 @@ namespace GigHub.Dtos
                 return _dateTime;
             }
 
-            set
-            {
-                _dateTime = value;
-            }
+            set { _dateTime = value; }
         }
 
-        [Required]
-        [StringLength(255)]
-        public string Venue { get; set; }
+        [Required] [StringLength(255)] public string Venue { get; set; }
 
         public ArtistDto Artist { get; set; }
 
@@ -58,9 +53,7 @@ namespace GigHub.Dtos
 
         public GenreDto Genre { get; set; }
 
-        [Required]
-        [Display(Name = "Genre")]
-        public int GenreId { get; set; }
+        [Required] [Display(Name = "Genre")] public int GenreId { get; set; }
 
         public bool Active { get; set; }
 
@@ -75,5 +68,9 @@ namespace GigHub.Dtos
         public string Year => _dateTime != default
             ? DateTime.ToString("yyyy")
             : string.Empty;
+
+        public bool IsGoing { get; set; }
+
+        public string IsGoingDisplay => IsGoing ? "Going" : "Going?";
     }
 }

@@ -75,9 +75,19 @@ namespace GigHub.Models
             Followees.Remove(following);
         }
 
-        public bool IsGoing(int gigId)
+        public bool IsAttending(int gigId)
         {
             return Gigs.Any(g => g.Id == gigId);
+        }
+
+        public void Attending(Gig gig)
+        {
+            Gigs.Add(gig);
+        }
+
+        public void NotAttending(Gig gig)
+        {
+            Gigs.Remove(gig);
         }
     }
 }

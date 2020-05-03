@@ -44,7 +44,10 @@ namespace GigHub.Controllers
                 .Gigs
                 .Where(g => g.DateTime > DateTime.Now)
                 .OrderBy(g => g.DateTime)
-                .Select(Mapper.Map<Gig, GigDto>);
+                .Select(Mapper.Map<Gig, GigDto>)
+                .ToList();
+
+            attendingGigsDtos.ForEach(g => g.IsGoing = true);
 
             var viewModel = new GigsViewModel
             {
@@ -151,7 +154,7 @@ namespace GigHub.Controllers
             var user = GetUser();
 
             model.IsFollowing = user.IsFollowing(gig.Artist.Id);
-            model.IsAttending = user.IsGoing(gig.Id);
+            model.IsAttending = user.IsAttending(gig.Id);
 
             return View(model);
         }

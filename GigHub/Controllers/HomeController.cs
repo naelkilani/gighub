@@ -3,6 +3,7 @@ using GigHub.Dtos;
 using GigHub.Models;
 using GigHub.ViewModels;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -34,7 +35,8 @@ namespace GigHub.Controllers
             
             var upcomingGigsDtos = upcomingGigsQuery
                 .OrderBy(g => g.DateTime)
-                .Select(Mapper.Map<Gig, GigDto>);
+                .Select(Mapper.Map<Gig, GigDto>)
+                .ToList();
 
             var viewModel = new GigsViewModel
             {
@@ -44,7 +46,22 @@ namespace GigHub.Controllers
                 AllowSearch = true
             };
 
+            if (!User.Identity.IsAuthenticated)
+                return View("Gigs", viewModel);
+
+            var user = GetUser();
+            viewModel.GigDtos.ForEach(g => g.IsGoing = user.IsAttending(g.Id));
+
             return View("Gigs", viewModel);
+        }
+
+        private ApplicationUser GetUser()
+        {
+            var userId = User.Identity.GetUserId();
+
+            return _context.Users
+                .Include(u => u.Gigs)
+                .First(u => u.Id == userId);
         }
 
         public ActionResult About()
