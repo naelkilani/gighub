@@ -1,5 +1,4 @@
-﻿
-var GigsController = function (attendanceService) {
+﻿var GigsController = function (attendanceService) {
     var button;
 
     var init = function (container) {
@@ -22,8 +21,8 @@ var GigsController = function (attendanceService) {
     };
 
     var done = function () {
-        var text = button.text() == "Going" ? "Going?" : "Going";
-        button.toggleClass("btn-default").toggleClass("btn-primary").text(text);
+        var text = (button.text() == "Going") ? "Going?" : "Going";
+        button.toggleClass("btn-default").toggleClass("btn-info").text(text);
     };
 
     return {
