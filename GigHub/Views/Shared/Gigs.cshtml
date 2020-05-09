@@ -21,7 +21,7 @@
     }
 }
 
-<ul class="gigs voffset5">
+<ul id="gigs" class="gigs voffset5">
     @foreach (var gig in Model.GigDtos)
     {
         <li>
@@ -59,7 +59,7 @@
 {
     <script>
         $(document).ready(function() {
-            GigsController.init();
+            GigsController.init("#gigs");
         });
     </script>
 }
