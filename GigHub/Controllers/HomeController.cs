@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
-using GigHub.Dtos;
-using GigHub.Models;
-using GigHub.Repositories;
-using GigHub.ViewModels;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
+using GigHub.Core.Dtos;
+using GigHub.Core.Models;
+using GigHub.Core.ViewModels;
+using GigHub.Persistence;
+using GigHub.Persistence.Repositories;
 
 namespace GigHub.Controllers
 {
