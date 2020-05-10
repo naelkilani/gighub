@@ -15,12 +15,14 @@ namespace GigHub.Controllers
         private readonly ApplicationDbContext _context;
         private readonly GigsRepository _gigsRepository;
         private readonly UserRepository _userRepository;
+        private readonly GenresRepository _genresRepository;
 
         public GigsController()
         {
             _context = new ApplicationDbContext();
             _gigsRepository = new GigsRepository(_context);
             _userRepository = new UserRepository(_context);
+            _genresRepository = new GenresRepository(_context);
         }
 
         public ActionResult Mine()
@@ -54,7 +56,7 @@ namespace GigHub.Controllers
         {
             var viewModel = new GigFormViewModel
             {
-                GenreDtos = _context.Genres.Select(Mapper.Map<Genre, GenreDto>)
+                GenreDtos = _genresRepository.GetGenres().Select(Mapper.Map<Genre, GenreDto>)
             };
 
             return View("GigForm", viewModel);
@@ -73,7 +75,7 @@ namespace GigHub.Controllers
             var viewModel = new GigFormViewModel
             {
                 GigDto = Mapper.Map<Gig, GigDto>(gig),
-                GenreDtos = _context.Genres.Select(Mapper.Map<Genre, GenreDto>)
+                GenreDtos = _genresRepository.GetGenres().Select(Mapper.Map<Genre, GenreDto>)
             };
 
             return View("GigForm", viewModel);
@@ -88,7 +90,7 @@ namespace GigHub.Controllers
                 var viewModel = new GigFormViewModel
                 {
                     GigDto = gigDto,
-                    GenreDtos = _context.Genres.Select(Mapper.Map<Genre, GenreDto>)
+                    GenreDtos = _genresRepository.GetGenres().Select(Mapper.Map<Genre, GenreDto>)
                 };
 
                 return View("GigForm", viewModel);
