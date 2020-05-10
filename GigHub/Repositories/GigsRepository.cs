@@ -17,21 +17,16 @@ namespace GigHub.Repositories
 
         public Gig GetGig(int id)
         {
-            return _context.Gigs.FirstOrDefault(g => g.Id == id);
+            return _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .FirstOrDefault(g => g.Id == id);
         }
 
         public Gig GetGigIncludeAttendees(int id)
         {
             return _context.Gigs
                 .Include(g => g.Attendees)
-                .FirstOrDefault(g => g.Id == id);
-        }
-
-        public Gig GetGigIncludeArtistAndGenre(int id)
-        {
-            return _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
                 .FirstOrDefault(g => g.Id == id);
         }
 
