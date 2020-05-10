@@ -62,5 +62,10 @@ namespace GigHub.Repositories
                 .Where(g => g.DateTime > DateTime.Now)
                 .ToList();
         }
+
+        public void Add(Gig gig)
+        {
+            _context.Gigs.Add(gig);
+        }
     }
 }

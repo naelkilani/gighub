@@ -111,7 +111,7 @@ namespace GigHub.Controllers
             var gig = Mapper.Map<GigDto, Gig>(gigDto);
             gig.ArtistId = User.Identity.GetUserId();
 
-            _context.Gigs.Add(gig);
+            _gigsRepository.Add(gig);
         }
 
         private void UpdateGig(GigDto gigDto)
