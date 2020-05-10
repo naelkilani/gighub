@@ -71,6 +71,6 @@ namespace GigHub.Dtos
 
         public bool IsGoing { get; set; }
 
-        public string IsGoingDisplay => IsGoing ? "Going" : "Going?";
+        public string AttendingButtonText => IsGoing ? "Going" : "Going?";
     }
 }

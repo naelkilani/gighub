@@ -21,7 +21,7 @@
     };
 
     var done = function () {
-        var text = (button.text() == "Going") ? "Going?" : "Going";
+        var text = (button.text().trim() == "Going") ? "Going?" : "Going";
         button.toggleClass("btn-default").toggleClass("btn-info").text(text);
     };
 

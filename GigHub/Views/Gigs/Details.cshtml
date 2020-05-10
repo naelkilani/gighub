@@ -5,67 +5,37 @@
     var gig = Model.Gig;
 }
 
-<h2>
-    @gig.Artist.Name
-    @if (Request.IsAuthenticated)
+<div id="gig-details">
+    <h2>
+        @gig.Artist.Name
+        @if (Request.IsAuthenticated)
+        {
+            <button data-artist-id="@gig.ArtistId" data-isFollowing="@Model.IsFollowing"
+                    class="btn @(Model.IsFollowing ? "btn-info" : "btn-default") js-toggle-following">
+                @Model.FollowingButtonText
+            </button>
+        }
+    </h2>
+    
+    <p>Performing @gig.Genre.Name event at @gig.Venue on @gig.Date at @gig.Time.</p>
+
+
+    @if (!gig.Active)
     {
-        <button data-artist-id="@gig.ArtistId" data-isFollowing="@Model.IsFollowing" class="btn btn-default js-toggle-following"></button>
+        <span class="label label-warning">This event has been cancelled</span>
+
     }
-</h2>
-
-<p>Performing @gig.Genre.Name event at @gig.Venue on @gig.Date at @gig.Time.</p>
-
-
-@if (!gig.Active)
-{
-    <span class="label label-warning">This event has been cancelled</span>
-
-}
-else if (Model.IsAttending)
-{
-    <p>You are going to this event.</p>
-}
+    else if (Model.IsAttending)
+    {
+        <p>You are going to this event.</p>
+    }
+</div>
 
 @section scripts
 {
     <script>
         $(document).ready(function () {
-            var button = $(".js-toggle-following");
-
-            $(".js-toggle-following").click(function() {
-                $.post("/api/followings", { artistId: button.attr("data-artist-id") })
-                    .done(function () {
-                        changeFollowButtonState();
-                        displayFollowButton();
-                    })
-                    .fail(function() {
-                        alert("An error has occured!");
-                    });
-            });
-
-            displayFollowButton();
-
-            function changeFollowButtonState() {
-                button.attr("data-isFollowing") == "True"
-                    ? button.attr("data-isFollowing", "False")
-                    : button.attr("data-isFollowing", "True");
-            }
-
-            function displayFollowButton() {
-                var isFollowing = button.attr("data-isFollowing") == "True";
-                if (isFollowing) {
-                    button
-                        .removeClass("btn-default")
-                        .text("Following")
-                        .addClass("btn-info");
-                } else {
-                    button
-                        .removeClass("btn-info")
-                        .text("Follow")
-                        .addClass("btn-default");
-                }
-
-            }
+            GigDetailsController.init("#gig-details");
         });
     </script>
 }
