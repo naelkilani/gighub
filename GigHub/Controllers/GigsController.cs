@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GigHub.Dtos;
 using GigHub.Models;
+using GigHub.Persistence;
 using GigHub.Repositories;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -16,6 +17,7 @@ namespace GigHub.Controllers
         private readonly GigsRepository _gigsRepository;
         private readonly UserRepository _userRepository;
         private readonly GenresRepository _genresRepository;
+        private readonly UnitOfWork _unitOfWork;
 
         public GigsController()
         {
@@ -23,6 +25,7 @@ namespace GigHub.Controllers
             _gigsRepository = new GigsRepository(_context);
             _userRepository = new UserRepository(_context);
             _genresRepository = new GenresRepository(_context);
+            _unitOfWork = new UnitOfWork(_context);
         }
 
         public ActionResult Mine()
@@ -101,7 +104,7 @@ namespace GigHub.Controllers
             else
                 UpdateGig(gigDto);
 
-            _context.SaveChanges();
+            _unitOfWork.Save();
 
             return RedirectToAction("Mine", "Gigs");
         }
