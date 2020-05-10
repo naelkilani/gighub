@@ -54,6 +54,7 @@ namespace GigHub.Models
                 Follow(artistId);
         }
 
+        //It is better to have this in a repository. 
         public bool IsFollowing(string artistId)
         {
             return Followees.Any(f => f.FolloweeId == artistId);
@@ -75,6 +76,7 @@ namespace GigHub.Models
             Followees.Remove(following);
         }
 
+        //It is better to have this in a repository. 
         public bool IsAttending(int gigId)
         {
             return Gigs.Any(g => g.Id == gigId);
